@@ -54,7 +54,18 @@ const login = async (req, res, next) => {
   }
 };
 
+const getCurrentUser = async (req, res, next) => {
+  try {
+    const user = await User.findById(req.user._id);
+
+    return res.send(user);
+  } catch (error) {
+    return next(error);
+  }
+};
+
 module.exports = {
   createUser,
   login,
+  getCurrentUser,
 };
