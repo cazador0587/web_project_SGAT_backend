@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 require("dotenv").config();
+const routes = require("./routes");
 
 const app = express();
 
@@ -23,6 +24,8 @@ app.use(express.json());
 app.get("/", (req, res) => {
   res.send({ message: "API SGAT funcionando correctamente" });
 });
+
+app.use(routes);
 
 app.listen(PORT, () => {
   console.log(`Servidor SGAT escuchando en puerto ${PORT}`);
