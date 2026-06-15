@@ -1,5 +1,10 @@
-node_modules
+node_modules/
 .env
-logs
+
+request.log
+error.log
+
+logs/
+
 npm-debug.log
 .DS_Store
