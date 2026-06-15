@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 require("dotenv").config();
 const routes = require("./routes");
+const errorHandler = require("./middlewares/errorHandler");
 
 const app = express();
 const { PORT = 3000, MONGODB_URI = "mongodb://127.0.0.1:27017/sgatdb" } =
@@ -25,6 +26,14 @@ app.get("/", (req, res) => {
 });
 
 app.use(routes);
+
+app.use((req, res, next) => {
+  const error = new Error("Ruta no encontrada");
+  error.statusCode = 404;
+  next(error);
+});
+
+app.use(errorHandler);
 
 app.listen(PORT, () => {
   console.log(`Servidor SGAT escuchando en puerto ${PORT}`);
