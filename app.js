@@ -4,6 +4,7 @@ const cors = require("cors");
 require("dotenv").config();
 const routes = require("./routes");
 const errorHandler = require("./middlewares/errorHandler");
+const { requestLogger, errorLogger } = require("./middlewares/logger");
 
 const app = express();
 const { PORT = 3000, MONGODB_URI = "mongodb://127.0.0.1:27017/sgatdb" } =
@@ -18,13 +19,14 @@ mongoose
     console.error("Error al conectar con MongoDB:", error);
   });
 
-app.use(cors());
-app.use(express.json());
-
 app.get("/", (req, res) => {
   res.send({ message: "API SGAT funcionando correctamente" });
 });
 
+app.use(cors());
+app.use(express.json());
+
+app.use(requestLogger);
 app.use(routes);
 
 app.use((req, res, next) => {
@@ -33,6 +35,7 @@ app.use((req, res, next) => {
   next(error);
 });
 
+app.use(errorLogger);
 app.use(errorHandler);
 
 app.listen(PORT, () => {
