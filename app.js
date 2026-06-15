@@ -5,6 +5,7 @@ require("dotenv").config();
 const routes = require("./routes");
 const errorHandler = require("./middlewares/errorHandler");
 const { requestLogger, errorLogger } = require("./middlewares/logger");
+const { errors } = require("celebrate");
 
 const app = express();
 const { PORT = 3000, MONGODB_URI = "mongodb://127.0.0.1:27017/sgatdb" } =
@@ -36,6 +37,7 @@ app.use((req, res, next) => {
 });
 
 app.use(errorLogger);
+app.use(errors());
 app.use(errorHandler);
 
 app.listen(PORT, () => {
