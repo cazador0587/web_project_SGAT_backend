@@ -1,244 +1,114 @@
 # SGAT Backend
 
-Backend desarrollado para **SGAT (Sistema de Gestión de Activos Tecnológicos)**.
+## Sistema de Gestión de Activos Tecnológicos (SGAT)
 
-La API permite la gestión de usuarios y activos tecnológicos mediante autenticación basada en JWT, almacenamiento en MongoDB y validaciones de datos con Celebrate y Joi.
+API REST desarrollada con Node.js y Express para la administración de usuarios y activos tecnológicos.
 
----
+## URL de Producción
 
-# Tecnologías utilizadas
+https://api.sgat-fsalvador.mooo.com
+
+## Funcionalidades Implementadas
+
+### Usuarios
+
+* Registro de usuarios.
+* Inicio de sesión.
+* Encriptación de contraseñas mediante bcrypt.
+* Generación de JWT.
+* Validación de credenciales.
+
+### Equipos
+
+* Crear equipos.
+* Obtener equipos.
+* Obtener detalle de equipo.
+* Actualizar equipos.
+* Eliminar equipos.
+
+### Seguridad
+
+* Autenticación mediante JWT.
+* Protección de rutas.
+* Validación de datos.
+* Manejo centralizado de errores.
+* Variables de entorno.
+
+## Tecnologías Utilizadas
 
 * Node.js
-* Express.js
+* Express
 * MongoDB
 * Mongoose
-* JSON Web Token (JWT)
-* bcryptjs
-* Celebrate
-* Joi
-* dotenv
-* cors
-* winston
-* express-winston
+* JWT
+* Bcrypt
+* PM2
+* Nginx
 
----
+## Variables de Entorno
 
-# Instalación
-
-Clonar el repositorio:
-
-```bash
-git clone <url-del-repositorio>
-```
-
-Instalar dependencias:
-
-```bash
-npm install
-```
-
----
-
-# Variables de entorno
-
-Crear un archivo `.env` en la raíz del proyecto:
+Archivo `.env`
 
 ```env
+NODE_ENV=production
 PORT=3000
 MONGODB_URI=mongodb://127.0.0.1:27017/sgatdb
-JWT_SECRET=dev-secret-sgat
+JWT_SECRET=YOUR_SECRET_KEY
 ```
 
----
-
-# Scripts disponibles
-
-Modo desarrollo:
+## Instalación Local
 
 ```bash
-npm run dev
-```
-
-Modo producción:
-
-```bash
+git clone <repositorio>
+cd web_project_SGAT_backend
+npm install
 npm start
 ```
 
----
+## Endpoints Principales
 
-# Dependencias principales
-
-| Dependencia  | Descripción                    |
-| ------------ | ------------------------------ |
-| express      | Framework web                  |
-| mongoose     | ODM para MongoDB               |
-| bcryptjs     | Encriptación de contraseñas    |
-| jsonwebtoken | Generación y validación de JWT |
-| celebrate    | Middleware de validación       |
-| joi          | Esquemas de validación         |
-| dotenv       | Variables de entorno           |
-| cors         | Configuración CORS             |
-| winston      | Sistema de logs                |
-
----
-
-# Autenticación
-
-La API utiliza autenticación mediante JWT.
-
-Para acceder a las rutas protegidas es necesario enviar el token en los headers:
-
-```http
-Authorization: Bearer JWT_TOKEN
-```
-
----
-
-# Endpoints disponibles
-
-## Registro de usuario
+### Autenticación
 
 ```http
 POST /signup
-```
-
-Body:
-
-```json
-{
-  "name": "Fernando Salvador",
-  "email": "fernando@sgat.com",
-  "password": "123456"
-}
-```
-
-Respuesta:
-
-```json
-{
-  "name": "Fernando Salvador",
-  "email": "fernando@sgat.com"
-}
-```
-
----
-
-## Inicio de sesión
-
-```http
 POST /signin
 ```
 
-Body:
-
-```json
-{
-  "email": "fernando@sgat.com",
-  "password": "123456"
-}
-```
-
-Respuesta:
-
-```json
-{
-  "token": "JWT_TOKEN"
-}
-```
-
----
-
-## Obtener usuario autenticado
-
-```http
-GET /users/me
-```
-
-Requiere JWT.
-
----
-
-## Obtener equipos
+### Equipos
 
 ```http
 GET /equipments
-```
-
-Requiere JWT.
-
----
-
-## Crear equipo
-
-```http
+GET /equipments/:id
 POST /equipments
-```
-
-Requiere JWT.
-
----
-
-## Actualizar equipo
-
-```http
 PATCH /equipments/:id
-```
-
-Requiere JWT.
-
----
-
-## Eliminar equipo
-
-```http
 DELETE /equipments/:id
 ```
 
-Requiere JWT.
+## Despliegue
 
----
+La aplicación se encuentra desplegada en una máquina virtual de Google Cloud utilizando:
 
-# Manejo de errores
+* Ubuntu Server
+* Node.js
+* MongoDB
+* PM2
+* Nginx
+* Let's Encrypt SSL
 
-La API implementa manejo centralizado de errores.
+## Mejoras Futuras
 
-Códigos soportados:
+Se contempla la implementación de nuevos módulos:
 
-| Código | Descripción                |
-| ------ | -------------------------- |
-| 400    | Datos inválidos            |
-| 401    | No autorizado              |
-| 404    | Recurso no encontrado      |
-| 409    | Conflicto de datos         |
-| 500    | Error interno del servidor |
+* Roles y permisos.
+* Gestión de incidencias.
+* Gestión de mantenimientos.
+* Gestión de licencias.
+* Reportes avanzados.
+* Exportación de información.
+* Auditoría de cambios.
+* Notificaciones.
+* Dashboard ejecutivo.
 
----
+## Autor
 
-# Logs
-
-La aplicación genera automáticamente:
-
-* request.log → Registro de solicitudes
-* error.log → Registro de errores
-
----
-
-# Pruebas
-
-La API puede probarse utilizando:
-
-* Thunder Client
-* Postman
-* curl
-
-Ejemplo:
-
-```bash
-curl -X POST http://localhost:3000/signin \
--H "Content-Type: application/json" \
--d '{
-  "email":"fernando@sgat.com",
-  "password":"123456"
-}'
-```
+Fernando Salvador
