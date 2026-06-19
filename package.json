@@ -1,0 +1,38 @@
+{
+  "name": "web_project_sgat_backend",
+  "version": "1.0.0",
+  "description": "Backend API para SGAT - Sistema de Gestión de Activos Tecnológicos",
+  "main": "index.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cazador0587/web_project_SGAT_backend.git"
+  },
+  "keywords": [],
+  "author": "Fernando Salvador",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cazador0587/web_project_SGAT_backend/issues"
+  },
+  "homepage": "https://github.com/cazador0587/web_project_SGAT_backend#readme",
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "celebrate": "^15.0.3",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "express-winston": "^4.2.0",
+    "joi": "^18.2.1",
+    "jsonwebtoken": "^9.0.3",
+    "mongoose": "^9.7.0",
+    "validator": "^13.15.35",
+    "winston": "^3.19.0"
+  },
+  "devDependencies": {
+    "eslint": "^10.5.0",
+    "nodemon": "^3.1.14"
+  }
+}
